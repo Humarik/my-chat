@@ -20,7 +20,12 @@ function MessageInput ({socket, dataMessage, setDataMessage}) {
     }
 
     return(
-        <input className='message-input' onKeyDown={craeteMessage}/>
+        <textarea className='message-input' onKeyDown={(e) => {
+            const inputMessage = document.querySelector('.message-input');
+            inputMessage.style.height = 'auto';
+            inputMessage.style.height = inputMessage.scrollHeight + 'px';
+            craeteMessage(e);
+        }} placeholder='Введите свое сообщение'/>
     )
 };
 

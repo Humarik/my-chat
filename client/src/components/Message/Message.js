@@ -9,11 +9,16 @@ function Message({message, socketId}) {
         ?
             <div className='message-container my' id={message.id}>
                 <span className='message-text'>{message.msg}</span>
-                <div>Ты</div>
+                <div className='dateMassege'>
+                    {`${new Date().getHours()}:${new Date().getMinutes()}`}
+                </div>
             </div>
         :
             <div className='message-container' id={message.id}>
                 <span className='message-text'>{message.msg}</span>
+                <div className='dateMassege'>
+                    {`${new Date().getHours()}:${new Date().getMinutes()}`}
+                </div>
             </div>
        }
       </>

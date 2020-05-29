@@ -6,7 +6,7 @@
   min-height: 300px;
   box-shadow: 0 0 6px 0 rgba(0,0,0,.04), 0 4px 10px 0 rgba(13,35,67,.25);
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .container-chat {
   display: flex;

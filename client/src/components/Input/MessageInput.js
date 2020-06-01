@@ -1,31 +1,24 @@
 import React from 'react';
 import './messageInput.css';
 
-function MessageInput ({socket, dataMessage, setDataMessage}) {
+function MessageInput ({socket}) {
     const craeteMessage = (e) => {
-        if(e.keyCode !== 13) return;
+        if(e.keyCode !== 13 || !e.target.value.trim()) return;
 
-        const inputMessage = document.querySelector('.message-input');
-        const body = {
-            id: dataMessage.id,
-            messages: [
-                ...dataMessage.messages, 
-                {id: dataMessage.id, msg: inputMessage.value}
-            ]
-        }
-        socket.emit('sendMessage', body);
-        
-        setDataMessage(body);
+        e.preventDefault(); 
+        const inputMessage = e.target;
+        socket.emit('sendMessage', {id: socket.id, msg: inputMessage.value});
         inputMessage.value = '';
+        inputMessage.style.cssText = 'height:36px';
     }
 
     return(
         <textarea className='message-input' onKeyDown={(e) => {
-            const inputMessage = document.querySelector('.message-input');
-            inputMessage.style.height = 'auto';
-            inputMessage.style.height = inputMessage.scrollHeight + 'px';
+            const inputMessage = e.target;
+            inputMessage.style.cssText = 'height:auto; padding:0';
+            inputMessage.style.cssText = 'height:' + inputMessage.scrollHeight + 'px';
             craeteMessage(e);
-        }} placeholder='Введите свое сообщение'/>
+        }} placeholder='Напишите сообщение...'/>
     )
 };
 

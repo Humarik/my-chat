@@ -1,53 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './App.css';
 import MessageInput from './components/Input/MessageInput';
 import Message from './components/Message/Message';
 import Requests from './requests/requests';
 
 const requests = new Requests();
+const socket = requests.connectionSocket('https://chat-hurma.herokuapp.com/');
+
+function getSomething(state, obj) {
+  return [...state, obj]
+};
 
 function App() {
-  const [socketId, setSocketId] = useState('');
-  const [socket, setSocket] = useState({});
-  const [dataMessage, setDataMessage] = useState({
-    id: '',
-    messages: [],
-  });
+  const [state, dispatch] = useReducer(getSomething, []);
 
   useEffect(() => {
-    setSocket(requests.connectionSocket('http://localhost:5000'));
+    socket.on('sendMessage', data => {
+      dispatch(data)
+    })
   }, []);
 
   useEffect(() => {
-    if(!socket.on) return;
-    socket.on('connection', id => {
-      setSocketId(id);
-      setDataMessage({
-        id: id,
-        messages: [],
-      });
-    });
-  },[socket]);
-
-  useEffect(() => {
-    if(!socket.on) return;
-
-    socket.on('sendMessage', ({id, messages}) => {
-      setDataMessage({
-        id: dataMessage.id,
-        messages: [...dataMessage.messages, {id, msg: messages[messages.length - 1].msg}]
-      });
-    });
-  }, [dataMessage])
+    const chatBody = document.querySelector('.container-chat');
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, [state])
 
   return (
     <div className='container'>
       <div className='container-chat'>
-        {dataMessage.messages.map((message, index) => (
-          <Message key={index} message={message} socketId={socketId}/>
-        ))}
+        <ul className='chat-list'>
+          {state.map((message, index) => (
+            <Message key={index} message={message} socketId={socket.id}/>
+          ))}
+        </ul>
       </div>
-      <MessageInput socket={socket} dataMessage={dataMessage} setDataMessage={setDataMessage}/>
+      <MessageInput socket={socket}/>
     </div>
   );
 }

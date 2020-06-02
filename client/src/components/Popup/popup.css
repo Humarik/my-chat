@@ -1,0 +1,36 @@
+.popup-container {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    background: white;
+}
+.popup-content {
+    width: 97%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    background: #4a76a8;
+    border-radius: 5px;
+}
+.popup-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: grey;
+    opacity: 0.6;
+}
+.name-input {
+    align-self: center;
+    padding: 5px;
+    height: 35px;
+    width: 150px;
+    border-radius: 5px;
+    text-align: center;
+}

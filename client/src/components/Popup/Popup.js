@@ -12,7 +12,7 @@ function Popup({setName}) {
         <div className='popup-wrapper'>
             <div className='popup-container'>
                 <div className='popup-content'>
-                    <input onKeyDown={enterName} maxLength='15' className='name-input' placeholder='Укажите ваше имя'></input>
+                    <input autoFocus={true} onKeyDown={enterName} maxLength='15' className='name-input' placeholder='Укажите ваше имя'></input>
                 </div>
             </div>
         </div>

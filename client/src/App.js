@@ -1,8 +1,9 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import './App.css';
 import MessageInput from './components/Input/MessageInput';
 import Message from './components/Message/Message';
 import Requests from './requests/requests';
+import Popup from './components/Popup/Popup';
 
 const requests = new Requests();
 const socket = requests.connectionSocket('https://chat-hurma.herokuapp.com/');
@@ -13,6 +14,7 @@ function getSomething(state, obj) {
 
 function App() {
   const [state, dispatch] = useReducer(getSomething, []);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     socket.on('sendMessage', data => {
@@ -26,16 +28,19 @@ function App() {
   }, [state])
 
   return (
-    <div className='container'>
-      <div className='container-chat'>
-        <ul className='chat-list'>
-          {state.map((message, index) => (
-            <Message key={index} message={message} socketId={socket.id}/>
-          ))}
-        </ul>
+    <>
+      {!name && <Popup setName={setName} />}
+      <div className='container'>
+        <div className='container-chat'>
+          <ul className='chat-list'>
+            {state.map((message, index) => (
+              <Message key={index} message={message} socketId={socket.id} name={name}/>
+            ))}
+          </ul>
+        </div>
+        <MessageInput socket={socket} name={name}/>
       </div>
-      <MessageInput socket={socket}/>
-    </div>
+    </>
   );
 }
 

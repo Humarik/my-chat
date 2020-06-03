@@ -13,7 +13,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     height: 100%;
-    max-width: 800px;
+    max-width: 650px;
 }
 
 .main-title {

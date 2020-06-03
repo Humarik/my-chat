@@ -4,7 +4,8 @@ import MessageInput from '../Input/MessageInput';
 import Message from '../Message/Message';
 import Requests from '../../requests/requests';
 import Popup from '../Popup/Popup';
-import Header from '../Header/Header'
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const requests = new Requests();
 const socket = requests.connectionSocket('https://chat-hurma.herokuapp.com/');
@@ -42,6 +43,7 @@ function App() {
         </div>
         <MessageInput socket={socket} name={name}/>
       </div>
+      <Footer/>
     </>
   );
 }

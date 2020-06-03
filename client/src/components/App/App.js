@@ -1,9 +1,9 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import './App.css';
-import MessageInput from './components/Input/MessageInput';
-import Message from './components/Message/Message';
-import Requests from './requests/requests';
-import Popup from './components/Popup/Popup';
+import MessageInput from '../Input/MessageInput';
+import Message from '../Message/Message';
+import Requests from '../../requests/requests';
+import Popup from '../Popup/Popup';
 
 const requests = new Requests();
 const socket = requests.connectionSocket('https://chat-hurma.herokuapp.com/');

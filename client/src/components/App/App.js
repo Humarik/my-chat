@@ -4,6 +4,7 @@ import MessageInput from '../Input/MessageInput';
 import Message from '../Message/Message';
 import Requests from '../../requests/requests';
 import Popup from '../Popup/Popup';
+import Header from '../Header/Header'
 
 const requests = new Requests();
 const socket = requests.connectionSocket('https://chat-hurma.herokuapp.com/');
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <>
+      <Header name={name}/>
       {!name && <Popup setName={setName} />}
       <div className='container'>
         <div className='container-chat'>

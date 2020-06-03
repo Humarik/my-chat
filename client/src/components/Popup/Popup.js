@@ -4,7 +4,12 @@ import './popup.css';
 function Popup({setName}) {
     const enterName = (e) => {
         if(e.keyCode !== 13 || !e.target.value.trim()) return;
-        setName(e.target.value.trim());
+
+        localStorage.setItem(
+            'userName', 
+            JSON.stringify({isName: true, name: e.target.value.trim()})
+        );
+        setName({isName: true, name: e.target.value.trim()});
         e.target.value = '';
     };
 

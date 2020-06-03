@@ -16,7 +16,7 @@ function getSomething(state, obj) {
 
 function App() {
   const [state, dispatch] = useReducer(getSomething, []);
-  const [name, setName] = useState('');
+  const [userName, setUserName] = useState(JSON.parse(localStorage.getItem('userName')) || {isName: false, name: ''} );
 
   useEffect(() => {
     socket.on('sendMessage', data => {
@@ -31,17 +31,17 @@ function App() {
 
   return (
     <>
-      <Header name={name}/>
-      {!name && <Popup setName={setName} />}
+      <Header userName={userName} setUserName={setUserName}/>
+      {!userName.isName && <Popup setName={setUserName}/>}
       <div className='container'>
         <div className='container-chat'>
           <ul className='chat-list'>
             {state.map((message, index) => (
-              <Message key={index} message={message} socketId={socket.id} name={name}/>
+              <Message key={index} message={message} socketId={socket.id} name={userName.name}/>
             ))}
           </ul>
         </div>
-        <MessageInput socket={socket} name={name}/>
+        <MessageInput socket={socket} name={userName.name}/>
       </div>
       <Footer/>
     </>

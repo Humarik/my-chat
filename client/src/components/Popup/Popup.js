@@ -1,15 +1,20 @@
 import React from 'react';
 import './popup.css';
 
-function Popup({setName}) {
+function Popup({setUserInfo, userInfo}) {
     const enterName = (e) => {
         if(e.keyCode !== 13 || !e.target.value.trim()) return;
+        
+        const copyUserName = Object.assign({}, userInfo);
+        copyUserName.isName = true;
+        copyUserName.name = e.target.value.trim();
 
         localStorage.setItem(
             'userName', 
-            JSON.stringify({isName: true, name: e.target.value.trim()})
+            JSON.stringify(copyUserName)
         );
-        setName({isName: true, name: e.target.value.trim()});
+
+        setUserInfo(copyUserName);
         e.target.value = '';
     };
 

@@ -8,6 +8,7 @@
     min-height: 40px;
     border-radius: 5px;
     hyphens: auto;
+    overflow-wrap: break-word;
     background: #ededed;
 }
 
@@ -28,6 +29,8 @@
 }
 
 .message-text {
+    /* hyphens: auto;
+    word-break: break-all; */
     display: inline-block;
     margin: 3px 0;
 }

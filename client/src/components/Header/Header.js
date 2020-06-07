@@ -1,9 +1,9 @@
 import React from 'react';
 import './header.css'
 
-function Header ({userName, setUserName}) {
+function Header ({userInfo, setUserInfo}) {
     const rename = () => {
-        setUserName({isName: false, name: userName.name});
+        setUserInfo({isName: false, name: userInfo.name, id: userInfo.id});
     }
 
     return (
@@ -14,7 +14,7 @@ function Header ({userName, setUserName}) {
                 </div>
                 <div className='header-user-info' title='Изменить имя' onClick={rename}>
                     <div className='user-name-container'>
-                        <span className='user-name'>{`${userName.name}`}</span>
+                        <span className='user-name'>{`${userInfo.name}`}</span>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ function MessageInput ({socket, name}) {
     }
 
     return(
-        <textarea className='message-input' onKeyDown={(e) => {
+        <textarea className='message-input' maxLength='200' onKeyDown={(e) => {
             const inputMessage = e.target;
             inputMessage.style.cssText = 'height:auto; padding:0';
             inputMessage.style.cssText = 'height:' + inputMessage.scrollHeight + 'px';

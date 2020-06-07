@@ -5,20 +5,27 @@ ul {
 
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  width: 600px;
-  min-height: 800px;
+  width: 800px;
+  height: 800px;
   box-shadow: 0 0 6px 0 rgba(0,0,0,.04), 0 4px 10px 0 rgba(13,35,67,.25);
   border-radius: 5px;
   margin: 10px auto;
+  align-self: flex-start;
 }
-.container-chat {
+
+.chat-content {
   overflow-y: auto;
+  height: 100%;
+}
+
+.container-chat {
+  /* overflow-y: auto; */
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 300px;
+  /* height: 300px; */
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -28,17 +35,17 @@ ul {
   padding: 0 15px;
 }
 
-.container-chat::-webkit-scrollbar{
+.chat-content::-webkit-scrollbar{
   width: 1px;
 }
-.container-chat::-webkit-scrollbar-track {
+.chat-content::-webkit-scrollbar-track {
   background-color:white;
 }
-.container-chat::-webkit-scrollbar-thumb {
+.chat-content::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color:white;
 }
 
-.container-chat:hover::-webkit-scrollbar-thumb {
+.chat-content:hover::-webkit-scrollbar-thumb {
   background-color: silver;
 }
